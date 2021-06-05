@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="css/custom.css"/>
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <style>
+        #animload {
+          width: 5%;
+          height: 10%;
+          background-color: rgb(219, 235, 147);
+          position: relative;
+          /* Safari 4.0 - 8.0 */
+          -webkit-animation-name: example;
+          -webkit-animation-duration: 5s;
+          -webkit-animation-timing-function: linear;
+          -webkit-animation-delay: 2s;
+          -webkit-animation-iteration-count: infinite;
+          -webkit-animation-direction: alternate;
+          /* Standard syntax */
+          animation-name: example;
+          animation-duration: 5s;
+          animation-timing-function: linear;
+          animation-delay: 2s;
+          animation-iteration-count: infinite;
+          animation-direction: alternate;
+        }
+        /* Standard syntax */
+        @keyframes example {
+          0%   {background-color:rgb(219, 235, 147); }
+          25%  {background-color:rgba(91, 92, 77, 0.952); width: 20%;}
+          50%  {background-color:rgb(219, 235, 147);width: 80%; }
+          75%  {background-color:rgba(91, 92, 77, 0.952);width: 10%; }
+          100% {background-color:rgb(219, 235, 147);width: 100%;}
+        }
+        
+        /* popTip */
+        #popTipIcn {
+          width: 10%;
+          height: 100%;
+          
+          /* background-color: rgb(242, 248, 161); */
+          border: 2px solid rgb(0, 0, 0);
+          border-radius: 100%;
+          
+          position: relative;
+          /* Safari 4.0 - 8.0 */
+          -webkit-animation-name: popTip;
+          -webkit-animation-duration: 5s;
+          -webkit-animation-timing-function: linear;
+          -webkit-animation-delay: 2s;
+          -webkit-animation-iteration-count: infinite;
+          -webkit-animation-direction: alternate;
+          /* Standard syntax */
+          animation-name: popTip;
+          animation-duration: 5s;
+          animation-timing-function: linear;
+          animation-delay: 2s;
+          animation-iteration-count: infinite;
+          animation-direction: alternate;
+        }
+        /* Standard syntax */
+        @keyframes popTip {
+          0%   { border-radius:0% }
+          25%  { border-radius:100%}
+          50%  { border-radius:0% }
+          75%  { border-radius:100%}
+          100% { border-radius:0%;}
+        }
+
+
+        .modalTweak {
+          display: none; /* Hidden by default */
+          position: fixed; /* Stay in place */
+          z-index: 1; /* Sit on top */
+          padding-top: 100px; /* Location of the box */
+          left: 0;
+          top: 0;
+          width: 100%; /* Full width */
+          height: 100%; /* Full height */
+          overflow: auto; /* Enable scroll if needed */
+          background-color: rgb(0,0,0); /* Fallback color */
+          background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content */
+  .modalTweak-content {
+    background-color: rgba(0,0,0,0.2);
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+  }
+  
+      </style>
+  </head>
+
+  <body >
+     <input type="file" id="users" onchange="signUp()">
+        <div class="container">
+             <nav>
+                <div class="nav-wrapper col s12">
+
+                  <div class="row">
+                      <div class="col s4" >
+                          <a href="#"  onclick="logOut()" style="color: black;"><i class="material-icons left black-text">lock_outline</i>Logout</a>
+                      </div>
+                      <div class="col s2"></div>
+                      <div class="col s6">
+                          <a class="flow-text"><i class="material-icons left black-text">account_circle</i ><a id="userProfile" style="color: black;">User Name</a></a>
+              
+                      </div>
+                  </div>
+                         </div>
+                
+              </nav>
+             
+                  <div class="row">
+
+                      <!-- <p style="margin-top: 5%;"> Please click the <i class="material-icons">more-vert</i> icon to view candidate's Manifesto</p> -->
+                      
+                   
+                      <div class="cols s12" style="text-align: center;margin-top: 5%;">
+                        <a href= "voterLiveChart.html"  style="color: black;" class="waves-effect waves-light btn-small btn " style="margin-top: 5%;"><i class="material-icons right black-text ">insert_chart</i>View Live  Vote Chart</a>
+           
+                      </div>
+                      
+                        <h1 class="flow-text">Choose Categories</h1>
+                        <div class="cols s12">
+                            <ul class="collapsible" id="candidateVoters">
+                  
+                            </ul> 
+                        </div>
+                        </div>
+                         <!-- MODEL FOR REMOVE CANDIDATES -->
+                         <!-- The Modal -->
+                        <div id="myModal" class="modalTweak" >
+
+                            <!-- Modal content -->
+                            <div class=" row modalTweak-content">
+                             
+                                        <div style="text-align: center;">
+                                      
+                                        <div id="animload" class="col s12" style="text-align: start;"><h3>Loading...</h3></div>
+                          
+                          </div>
+                        
+        </div>
+        </div>
+    
+      </div>
+   
+    
+
+    <!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="https://npmcdn.com/parse/dist/parse.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <!-- <script  src="js/custom.js"></script> -->
+    <script  src="js/general.js"></script>
+    <!-- <script  src="js/data.js"></script> -->
+    <!-- <script  src=js\dash.chart.js></script> -->
+    <script  src="js\creatUsers.js"></script>
+    <script  src="js\VotersControl.js"></script>
+    
+ 
+    <!-- The core Firebase JS SDK is always required and must be listed first
+    <script src="/__/firebase/6.6.0/firebase-app.js"></script> -->
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#reserved-urls -->
+
+    <!-- Initialize Firebase -->
+    <!-- <script src="/__/firebase/init.js"></script> -->
+    <script>
+      Parse.initialize("St580xAp88tR8RPN71t6Z2H8lT7TbTsmQLgvlvJD", "231lG464fmk3ONG4i7txQmL88ZXwXar4m958QgzI"); //PASTE HERE YOUR Back4App APPLICATION ID AND YOUR JavaScript KEY
+      Parse.serverURL = "https://parseapi.back4app.com/";
+        
+          </script>
+  </body>
+</html>
