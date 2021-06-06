@@ -60,7 +60,7 @@ window.addEventListener('DOMContentLoaded', function() {
     VotingPrivil();
     postLoginArrangement();
     // postLoginArrangement();
-    postLogin();
+    // postLogin();
     console.log("this is the token" + sessionStorage.getItem("userToken"));
 
 });
