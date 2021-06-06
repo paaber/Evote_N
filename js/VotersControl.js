@@ -4,10 +4,10 @@
 </li> */}
 
 var client = new Parse.LiveQueryClient({
-  applicationId: '"iVLYheYwSFeyR7mT14SzAbZMWsL3nCbLNvMDiFK4"',
-  serverURL: 'wss://' + 'nacossvoting.back4app.io', // Example: 'wss://livequerytutorial.back4app.io'
-  javascriptKey: 'RA8dHQmj8ftCG1NXQw3j8ks4bIyOZZ6JhGQ4YNCV',
-  masterKey: 'zMpzbi7FpKbsAUMMJyl7CC0Goe2YELem4VC1BJ8t'
+  applicationId: 'St580xAp88tR8RPN71t6Z2H8lT7TbTsmQLgvlvJD',
+  serverURL: 'wss://' + 'naccosevote.b4a.app', // Example: 'wss://livequerytutorial.back4app.io'
+  javascriptKey: '231lG464fmk3ONG4i7txQmL88ZXwXar4m958QgzI',
+  masterKey: 'quoqD55rkmlbp5deZNbVbNS31GNe8hKaOwTBTy5i'
 });
 client.open();
 var query = new Parse.Query('VotingBool');
@@ -43,15 +43,15 @@ window.addEventListener('DOMContentLoaded', function() {
     // $('.modal').modal('open');
     // var elems = document.querySelectorAll('.modal');
     // var instances = M.Modal.init(elems);
-    
+
     // var singleModalElem = document.querySelector('#preloaderModal');
     // var instance = M.Modal.getInstance(singleModalElem);
     // instance.open();
     modal = document.getElementById("myModal");
-   
+
     modal.style.display = "block";
- 
- 
+
+
 
   // if(sessionStorage.getItem("userToken") === null){
   //   alert("session timeout");
@@ -65,7 +65,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
 });
 function readCategoriesVoters() {
-   
+
     query = new Parse.Query(Categories);
 
     // query.equalTo("category_name", 'President');
@@ -73,12 +73,12 @@ function readCategoriesVoters() {
         if(results){
             for (let i = 0; i < results.length; i++) {
                 var object = results[i];
-                categoriesListVoters.push(object.get("category_name")); 
+                categoriesListVoters.push(object.get("category_name"));
               }
-              
+
               //filterout
               console.log(votedCategorycanRes);
-            
+
               if(votedCategorycanRes.length > 0){
                 categoriesListVoters = categoriesListVoters.filter(f => !votedCategorycanRes.includes(f));
               }
@@ -87,12 +87,12 @@ function readCategoriesVoters() {
                 populateVotersCand(item);
               });
               revealCandidatesToVoters();
-              
+
         } else {
            console.log("Nothing found, please try again");
         }
     }).catch(function(error){
-        console.log("Error: " + error.code + " " + error.message);       
+        console.log("Error: " + error.code + " " + error.message);
     });
 }
 
@@ -108,20 +108,20 @@ function revealCandidatesToVoters(){
                 candidateListVoters.push([object.get("candidate_name"), object.get("Candidate_position"), object.get("Candidate_profileImage"), object.get("Candidate_vote"),object.get("Candidate_manifesto")]);
                 catHolderDict[object.get("candidate_name")]= object.get("Candidate_position");
                 // $("#profileImg")[0].src = object.get("Candidate_profileImage").url();
-               
+
               }
               candidateListVoters.forEach(function(item, index, array) {
                 // creatingCandDOM(item);
-              
+
                 populateVotersCandActuals(item);
               });
-              
+
         } else {
            console.log("Nothing found, please try again");
           //  modal.style.display = "none";
         }
     }).catch(function(error){
-        console.log("Error: " + error.code + " " + error.message);       
+        console.log("Error: " + error.code + " " + error.message);
     });
  }
 
@@ -133,7 +133,7 @@ function revealCandidatesToVoters(){
     elemheaddiv.innerHTML = item;
     elemlist.appendChild(elemheaddiv);
     document.getElementById("candidateVoters").appendChild(elemlist);
-}      
+}
 
 function populateVotersCandActuals(item){
 
@@ -164,10 +164,10 @@ function populateVotersCandActuals(item){
     var hintText = document.createElement('p');
     var manifest = document.createElement('p');
 
-    
+
     hyperef.className = "btn btn-medium waves-effect waves-light z-depth-3";
     // hyperef.innerHTML = "VOTE";
-    
+
     candimg.className = "activator";
     iconL.className = "material-icons right black-text";
     iconCls.className = "material-icons right black-text";
@@ -207,7 +207,7 @@ function populateVotersCandActuals(item){
 
     elemcandidateRevdiv.appendChild(elemrevspan);
     elemcandidateRevdiv.appendChild(manifest);
-   
+
 
     elemcandidateImgdiv.appendChild(candimg);
 
@@ -219,8 +219,8 @@ function populateVotersCandActuals(item){
     }
     // document.getElementById(item[1] + "voters").appendChild(elemcandidatediv);
     // $('#preloaderModal').modal('close');
-   
-}      
+
+}
 
 function readThenUpdate(candpos) {
     // var reader = new FileReader();
@@ -238,7 +238,7 @@ function readThenUpdate(candpos) {
         return 0;
       }
     }
-   
+
     votedCategoryDummy.push(catHolderDict[candpos]);
     query = new Parse.Query(candidateProfile);
     query.equalTo("candidate_name", candpos);
@@ -261,15 +261,15 @@ function readThenUpdate(candpos) {
 }
 
 function update(candprof) {
-    
+
     // candprof.set('Candidate_vote', Number(candprof.get("Candidate_vote")) + 1);
     candprof.increment('Candidate_vote');
     candprof.addUnique("voters",Current_User());
-   
+
     candprof.save().then(function (candg) {
     //   console.log('Pet updated! Name: ' + pet.get("name") + ' and new age: ' + pet.get("agePet"));
     collectCategoriesVotedFor(candprof.get("candidate_name"));
-        
+
     }).catch(function(error) {
       console.log('Error: ' + error.message);
       alert("please check that you've got internet connection and reload the page");
@@ -287,7 +287,7 @@ function collectCategoriesVotedFor(categoryV){
 }
 function removeVotedCategory(valueToDel){
     var elementDel = document.getElementById(valueToDel  + "voters");
-   
+
     if(elementDel != null){
         document.getElementById("candidateVoters").removeChild(elementDel);
     }
@@ -295,7 +295,7 @@ function removeVotedCategory(valueToDel){
 
 function postLoginArrangement(){
     votesVal = [];
-    
+
     document.getElementById("userProfile").innerHTML =  sessionStorage.getItem("userNameB");
     query = new Parse.Query(VotedCategories);
       query.equalTo("current_user", Current_User());
@@ -303,19 +303,19 @@ function postLoginArrangement(){
         if (cand) {
             for (let index = 0; index < cand.length; index++) {
                 votedCategorycanRes.push.apply(votedCategorycanRes,cand[index].get("Vtcategory_name"));
-                 
+
             }
             console.log("start");
             console.log(votedCategorycanRes);
           // console.log('Pet found with name: ' + pet.get("name") + ' and age: ' + pet.get("age"));
           // console.log(cand.get("Vtcategory_nme"));
-          
+
           //   cand.get("Vtcategory_name").forEach(function(item,index,array){
           //   votedCategorycanRes.push(item);
 
           // });
              readCategoriesVoters();
-          
+
         } else {
           console.log("Nothing found, please try again later");
           readCategoriesVoters();
@@ -324,7 +324,7 @@ function postLoginArrangement(){
         console.log("Errors: " + error.code + " " + error.message);
       });
 
-     
+
 }
 function Current_User(){
   var currentUser = sessionStorage.getItem("userToken");
@@ -332,7 +332,7 @@ function Current_User(){
 }
 
 
-  
+
 function createVotedCategoriesExceptons(votedCatArray) {
   Vcategory = new VotedCategories();
   Vcategory.set("current_user",Current_User());
@@ -355,7 +355,7 @@ function VotingPrivil(){
       if (cand) {
           votingActive =  cand.get("votebool");
           console.log("votingActive " + votingActive);
-        
+
       } else {
         console.log("Nothing found, please try again later");
       }
@@ -365,7 +365,7 @@ function VotingPrivil(){
 }
 
 function readThenVatcatUpdate(votedCatArray ) {
-  
+
   query = new Parse.Query(VotedCategories);
   query.equalTo("current_user", Current_User());
   query.first().then(function (cand) {
@@ -382,14 +382,14 @@ function readThenVatcatUpdate(votedCatArray ) {
 }
 
 function updatevatcat(candprof,votedCatArray) {
-  
+
   // candprof.set('Candidate_vote', Number(candprof.get("Candidate_vote")) + 1);
 
   candprof.addUnique("Vtcategory_name", votedCatArray);
   candprof.save().then(function (candg) {
   //   console.log('Pet updated! Name: ' + pet.get("name") + ' and new age: ' + pet.get("agePet"));
   console.log("vcat Added");
-      
+
   }).catch(function(error) {
     console.log('Error: ' + error.message);
     alert("please check that you've got internet connection and reload the page");
