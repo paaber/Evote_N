@@ -56,7 +56,7 @@ window.addEventListener('DOMContentLoaded', function() {
   if(sessionStorage.getItem("userToken") === null){
     alert("session timeout");
     window.location.href = "index.html";
-  //   }
+  }
     VotingPrivil();
     postLoginArrangement();
     // postLoginArrangement();
