@@ -1,9 +1,9 @@
 
 var client = new Parse.LiveQueryClient({
-    applicationId: '"iVLYheYwSFeyR7mT14SzAbZMWsL3nCbLNvMDiFK4"',
-    serverURL: 'wss://' + 'nacossvoting.back4app.io', // Example: 'wss://livequerytutorial.back4app.io'
-    javascriptKey: 'RA8dHQmj8ftCG1NXQw3j8ks4bIyOZZ6JhGQ4YNCV',
-    masterKey: 'zMpzbi7FpKbsAUMMJyl7CC0Goe2YELem4VC1BJ8t'
+  applicationId: 'St580xAp88tR8RPN71t6Z2H8lT7TbTsmQLgvlvJD',
+  serverURL: 'wss://' + 'naccosevote.b4a.app', // Example: 'wss://livequerytutorial.back4app.io'
+  javascriptKey: '231lG464fmk3ONG4i7txQmL88ZXwXar4m958QgzI',
+  masterKey: 'quoqD55rkmlbp5deZNbVbNS31GNe8hKaOwTBTy5i'
   });
 client.open();
 
@@ -62,12 +62,12 @@ subscription.on('open', () => {
    });
 
 subscription.on('create', candidate => {
-    
+
 });
 
 subscription.on('delete', todo => {
 
-           
+
 
         }
     );
@@ -81,7 +81,7 @@ window.addEventListener('DOMContentLoaded', function() {
     //     window.location.href = "index.html";
     // }
     PopulateCandidates();
-   
+
 });
 
 
@@ -102,29 +102,29 @@ function PopulateCandidates(){
                 // candidateListAnalytics.push([object.get("candidate_name"), object.get("Candidate_position"), object.get("Candidate_profileImage"), object.get("Candidate_vote")]);
                 candidateListAnalyticsDummy.push(object.get("candidate_name"));
                 candidateListAnalyticsDummyVotes.push(object.get("Candidate_vote"));
-              
-                
-               
+
+
+
                if(candidateListAnalyticsDummy.length > 0){
                     myChart.update();
-              
+
                     VotingPrivil_DASH();
-                    
-                   
+
+
                }
                 // $("#profileImg")[0].src = object.get("Candidate_profileImage").url();
-                
+
               }
             //   candidateList.forEach(function(item, index, array) {
             //     creatingCandDOM(item);
             //     populateCandRemove(item[0]);
             //   });
-              
+
         } else {
            console.log("Nothing found, please try again");
         }
     }).catch(function(error){
-        console.log("Error: " + error.code + " " + error.message);       
+        console.log("Error: " + error.code + " " + error.message);
     });
  }
 
@@ -143,27 +143,27 @@ function PopulateCandidates(){
                 candidateListAnalyticsDummy.push(object.get("candidate_name"));
                 candidateListAnalyticsDummyVotes.push(object.get("Candidate_vote"));
                 updateChartTrig();}
-                
+
                 candidateListAnalytics.forEach(function(item, index, array) {
                     choices[valInd].appendChild(popPup(item));
                     valInd+=1;
                   });
-              
+
         } else {
            console.log("Nothing found, please try again");
         }
     }).catch(function(error){
-        console.log("Error: " + error.code + " " + error.message);       
+        console.log("Error: " + error.code + " " + error.message);
     });
  }
 
 
-    
+
 
  function logOut(){
     sessionStorage.removeItem("userToken");
     window.location.href = "index.html";
-  
+
   }
   function Current_User(){
     var currentUser = localStorage.getItem("userToken");
@@ -186,7 +186,7 @@ function updateVTPRV(voteactiven,bool_valu) {
     // candprof.set('Candidate_vote', Number(candprof.get("Candidate_vote")) + 1);
     voteactiven.set('votebool',bool_valu);
     voteactiven.save().then(function (candg) {
-    //   console.log('Pet updated! Name: ' + pet.get("name") + ' and new age: ' + pet.get("agePet")); 
+    //   console.log('Pet updated! Name: ' + pet.get("name") + ' and new age: ' + pet.get("agePet"));
     }).catch(function(error) {
       console.log('Error: ' + error.message);
       alert("please check that you've got internet connection and reload the page");
@@ -206,9 +206,9 @@ function VotingPrivil_DASH(){
   }
   if(document.getElementById("voteActswitch") != null){
     document.getElementById("voteActswitch").addEventListener('change', function() {
-    
+
         if( document.getElementById("voteActswitch").checked){
-            
+
              readThenUpdateVTPRV(true);
              console.log("changed");
         }
@@ -218,7 +218,7 @@ function VotingPrivil_DASH(){
         }
      });
   }
- 
+
 
 //  <div class="col s12 m8 offset-m2 l6 offset-l3">
 //  <div class="card-panel grey lighten-5 z-depth-1">
@@ -241,10 +241,10 @@ function popPup(item){
     var elem3 = document.createElement('div');
     var elemimg = document.createElement('div');
     var elemHSpn = document.createElement('div');
-    
+
     var spanelem = document.createElement('span');
     var imgelem = document.createElement('img');
-   
+
     elemimg.className = "col s2";
     imgelem.src = item[2].url();
     imgelem.className = "circle responsive-img";

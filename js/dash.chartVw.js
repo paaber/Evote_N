@@ -1,10 +1,10 @@
 
 
 var client = new Parse.LiveQueryClient({
-    applicationId: '"iVLYheYwSFeyR7mT14SzAbZMWsL3nCbLNvMDiFK4"',
-    serverURL: 'wss://' + 'nacossvoting.back4app.io', // Example: 'wss://livequerytutorial.back4app.io'
-    javascriptKey: 'RA8dHQmj8ftCG1NXQw3j8ks4bIyOZZ6JhGQ4YNCV',
-    masterKey: 'zMpzbi7FpKbsAUMMJyl7CC0Goe2YELem4VC1BJ8t'
+  applicationId: 'St580xAp88tR8RPN71t6Z2H8lT7TbTsmQLgvlvJD',
+  serverURL: 'wss://' + 'naccosevote.b4a.app', // Example: 'wss://livequerytutorial.back4app.io'
+  javascriptKey: '231lG464fmk3ONG4i7txQmL88ZXwXar4m958QgzI',
+  masterKey: 'quoqD55rkmlbp5deZNbVbNS31GNe8hKaOwTBTy5i'
   });
 client.open();
 
@@ -65,12 +65,12 @@ subscription.on('open', () => {
    });
 
 subscription.on('create', candidate => {
-    
+
 });
 
 subscription.on('delete', todo => {
 
-           
+
 
         }
     );
@@ -78,7 +78,7 @@ subscription.on('delete', todo => {
 subscription.on('update', (object) => {
     console.log("updated");
     UpdateChartData();
-  
+
 });
 var choices = ["spc1","spc2"];
 window.addEventListener('DOMContentLoaded', function() {
@@ -86,7 +86,7 @@ window.addEventListener('DOMContentLoaded', function() {
     //     window.location.href = "index.html";
     // }
     PopulateCandidates();
-   
+
 });
 
 
@@ -97,7 +97,7 @@ function updateChartTrig(){
     candidateListAnalyticsDummy.forEach(function(item, index, array) {
         document.getElementById(item + "nm").innerHTML = item.toString() + "\t" + candidateListAnalyticsDummyVotes[candidateListAnalyticsDummy.indexOf(item)]  + "\t" + "votes\n" + candidateListAnalyticsDummyCandidate[candidateListAnalyticsDummy.indexOf(item)];
     });
-    
+
 }
 function PopulateCandidates(){
     valInd = 0;
@@ -113,18 +113,18 @@ function PopulateCandidates(){
                 candidateListAnalyticsDummy.push(object.get("candidate_name"));
                 candidateListAnalyticsDummyVotes.push(object.get("Candidate_vote"));
                 candidateListAnalyticsDummyCandidate.push(object.get('Candidate_position'));
-              
-                
-               
+
+
+
                if(candidateListAnalyticsDummy.length > 0){
                     myChart.update();
-              
+
                     // VotingPrivil_DASH();
-                    
-                   
+
+
                }
                 // $("#profileImg")[0].src = object.get("Candidate_profileImage").url();
-                
+
               }
               var filterCandList = [...new Set(candidateListAnalyticsDummyCandidate)];
               filterCandList.forEach(function(item, index, array) {
@@ -133,23 +133,23 @@ function PopulateCandidates(){
                 if(valInd >1){
                     valInd = 0;
                 }
-              
-               
+
+
               });
               candidateListAnalytics.forEach(function(item, index, array) {
                 document.getElementById( item[1] + "cand").appendChild(popPup(item));
               });
-          
+
             //   candidateList.forEach(function(it choices[valInd]em, index, array) {
             //     creatingCandDOM(item);
             //     populateCandRemove(item[0]);
             //   });
-              
+
         } else {
            console.log("Nothing found, please try again");
         }
     }).catch(function(error){
-        console.log("Error: " + error.code + " " + error.message);       
+        console.log("Error: " + error.code + " " + error.message);
     });
  }
 
@@ -158,7 +158,7 @@ function PopulateCandidates(){
     candidateListAnalyticsDummyVotes = []
     candidateListAnalyticsDummy = []
     candidateListAnalyticsDummyCandidate = [];
-    
+
     query = new Parse.Query(candidateProfile);
     // query.equalTo("name", textName);
     query.find().then(function(results){
@@ -170,23 +170,23 @@ function PopulateCandidates(){
                 candidateListAnalyticsDummyVotes.push(object.get("Candidate_vote"));
                 candidateListAnalyticsDummyCandidate.push(object.get('Candidate_position'));
                 updateChartTrig();}
-               
+
         } else {
            console.log("Nothing found, please try again");
         }
     }).catch(function(error){
-        console.log("Error: " + error.code + " " + error.message);       
+        console.log("Error: " + error.code + " " + error.message);
     });
  }
 
 
-    
+
 
  function logOut(){
     console.log(sessionStorage.getItem("userToken"));
     sessionStorage.removeItem("userToken");
     window.location.href = "index.html";
-  
+
   }
   function Current_User(){
     var currentUser = localStorage.getItem("userToken");
@@ -209,7 +209,7 @@ function PopulateCandidates(){
 //     // candprof.set('Candidate_vote', Number(candprof.get("Candidate_vote")) + 1);
 //     voteactiven.set('votebool',bool_valu);
 //     voteactiven.save().then(function (candg) {
-//     //   console.log('Pet updated! Name: ' + pet.get("name") + ' and new age: ' + pet.get("agePet")); 
+//     //   console.log('Pet updated! Name: ' + pet.get("name") + ' and new age: ' + pet.get("agePet"));
 //     }).catch(function(error) {
 //       console.log('Error: ' + error.message);
 //       alert("please check that you've got internet connection and reload the page");
@@ -229,9 +229,9 @@ function PopulateCandidates(){
 //   }
 //   if(document.getElementById("voteActswitch") != null){
 //     document.getElementById("voteActswitch").addEventListener('change', function() {
-    
+
 //         if( document.getElementById("voteActswitch").checked){
-            
+
 //              readThenUpdateVTPRV(true);
 //              console.log("changed");
 //         }
@@ -241,7 +241,7 @@ function PopulateCandidates(){
 //         }
 //      });
 //   }
- 
+
 
 //  <div class="col s12 m8 offset-m2 l6 offset-l3">
 //  <div class="card-panel grey lighten-5 z-depth-1">
@@ -274,10 +274,10 @@ function popPup(item){
     var elem3 = document.createElement('div');
     var elemimg = document.createElement('div');
     var elemHSpn = document.createElement('div');
-    
+
     var spanelem = document.createElement('span');
     var imgelem = document.createElement('img');
-   
+
     elemimg.className = "col s4";
     imgelem.src = item[2].url();
     imgelem.className = "circle responsive-img";
